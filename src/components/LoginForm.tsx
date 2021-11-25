@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import useTokenQuery from "../hooks/useTokenQuery";
 import { TokenResponse } from "../types";
 import { useHistory } from "react-router-dom";
+import LoginError from "./LoginError";
 
 const LoginForm = () => {
   const history = useHistory();
@@ -10,10 +11,9 @@ const LoginForm = () => {
     console.log(data);
     localStorage.setItem("token", data.token);
     history.push("/servers");
-    //  redirectas (react router)
   };
 
-  const { mutate } = useTokenQuery(onLoginSuccess);
+  const { mutate, error } = useTokenQuery(onLoginSuccess);
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +27,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col justify-center items-center  rounded-lg  h-1/2 ">
+      {error && <LoginError />}
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col justify-center  w-1/2"

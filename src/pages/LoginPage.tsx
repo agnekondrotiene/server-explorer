@@ -1,6 +1,17 @@
+import { useHistory } from "react-router";
 import LoginForm from "../components/LoginForm";
+import ServerListError from "../components/ServerListError";
+import useAuth from "../core/auth/useAuth";
 
 const LoginPage = () => {
+  const history = useHistory();
+
+  const auth = useAuth();
+
+  if (auth) {
+    history.push("/servers");
+  }
+
   return (
     <div className="flex w-screen h-screen">
       <div className="flex flex-col justify-center align-middle h-full w-1/2">
