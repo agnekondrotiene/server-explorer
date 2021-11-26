@@ -1,6 +1,5 @@
 import { useHistory } from "react-router";
 import LoginForm from "../components/LoginForm";
-import ServerListError from "../components/ServerListError";
 import useAuth from "../core/auth/useAuth";
 
 const LoginPage = () => {

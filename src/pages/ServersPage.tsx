@@ -1,27 +1,32 @@
 import React from "react";
-import ServerItem from "../components/ServerItem";
-import ServerListError from "../components/ServerListError";
+import { useHistory } from "react-router";
+import ServerListTable from "../components/ServerListTable";
 import { useServersQuery } from "../hooks/useServersQuery";
 
-type Server = {
-  name: string;
-  distance: number;
-};
-
 const ServersPage = () => {
+  const history = useHistory();
   const { servers } = useServersQuery();
   console.log(servers);
 
+  const onClick = () => {
+    localStorage.removeItem("token");
+    history.push("/");
+  };
+
   return (
-    <div>
-      <h1 className="text-center text-3xl p-4">Servers list</h1>
-      <div className="w-1/2 h-1/2">
+    <div className="flex flex-col items-center w-screen h-screen">
+      <div className="w-3/5 h-full flex flex-col items-center">
+        <button
+          onClick={onClick}
+          className="self-end w-1/5 mt-8 p-2 border-2 rounded-lg border-current hover:bg-red-100 hover:outline-none"
+        >
+          Log out
+        </button>
+        <h1 className="text-center text-3xl p-4">Servers list</h1>
         {servers ? (
-          servers.map((server: Server) => {
-            return <ServerItem name={server.name} distance={server.distance} />;
-          })
+          <ServerListTable servers={servers} />
         ) : (
-          <ServerListError />
+          <p>Sorry, no info available!</p>
         )}
       </div>
     </div>

@@ -34,11 +34,12 @@ const LoginForm = () => {
       >
         <label htmlFor="username">Username</label>
         <input
-          className="border-b-2 mb-4 p-2 outline-none"
+          className="border-b-2 mb-4 p-2 outline-none "
           value={formik.values.username}
           id="username"
           name="username"
           onChange={formik.handleChange}
+          autoFocus
         ></input>
         <label htmlFor="password">Password</label>
         <input

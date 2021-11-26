@@ -6,3 +6,8 @@ export type Credentials = {
 export type TokenResponse = {
   token: string;
 };
+
+export type Server = {
+  name: string;
+  distance: number;
+};
