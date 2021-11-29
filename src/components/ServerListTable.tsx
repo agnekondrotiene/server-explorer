@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Server } from "../types";
-import sortLogo from "../assets/sort.png";
 import sortByFn from "lodash/sortBy";
+import ServerListTableHeaderCell from "./ServerListTableHeaderCell";
 
 type Props = {
   servers: Server[];
@@ -11,22 +11,20 @@ const ServerListTable = ({ servers }: Props) => {
   const [sortBy, setSortBy] = useState("name");
   const [sortByDirection, setSortByDirection] = useState("asc");
 
-  const handleSortBy = (name: string) => {
-    setSortBy(name);
+  const handleSortBy = (newSortBy: string) => {
     setSortByDirection((current) => {
-      if (current === "asc") {
+      if (current === "asc" && newSortBy === sortBy) {
         return "desc";
       } else {
         return "asc";
       }
     });
+    setSortBy(newSortBy);
   };
 
   const sortedList: Server[] = sortByFn(servers, sortBy);
-  let imgPosition: string = "";
 
   if (sortByDirection === "desc") {
-    imgPosition = "transform rotate-180";
     sortedList.reverse();
   }
 
@@ -34,40 +32,18 @@ const ServerListTable = ({ servers }: Props) => {
     <table className="w-full table-auto border-separate border border-gray-400">
       <thead>
         <tr>
-          <th
-            onClick={() => handleSortBy("name")}
-            className="border border-red-100 hover:bg-red-50 hover:outline-none"
-          >
-            <span className="inline-flex items-center">
-              <span> Server name</span>
-              <span>
-                <img
-                  className={`${imgPosition} ml-2`}
-                  src={sortLogo}
-                  alt="Sort icon"
-                  width="15"
-                  height="15"
-                />
-              </span>
-            </span>
-          </th>
-          <th
-            onClick={() => handleSortBy("distance")}
-            className="border border-red-100 hover:bg-red-50 hover:outline-none"
-          >
-            <span className="inline-flex items-center">
-              <span> Distance</span>
-              <span>
-                <img
-                  className={`${imgPosition} ml-2`}
-                  src={sortLogo}
-                  alt="Sort icon"
-                  width="15"
-                  height="15"
-                />
-              </span>
-            </span>
-          </th>
+          <ServerListTableHeaderCell
+            onClick={handleSortBy}
+            sortBy={sortBy}
+            sortByDirection={sortByDirection}
+            cellName="name"
+          />
+          <ServerListTableHeaderCell
+            onClick={handleSortBy}
+            sortBy={sortBy}
+            sortByDirection={sortByDirection}
+            cellName="distance"
+          />
         </tr>
       </thead>
       <tbody>
