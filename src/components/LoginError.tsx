@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoginError = () => {
   return (
     <div className="w-10px h-10px bg-red-50 z-30 border-2 border-red-500 rounded-lg p-3 ">

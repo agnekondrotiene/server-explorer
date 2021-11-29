@@ -8,7 +8,6 @@ const LoginForm = () => {
   const history = useHistory();
 
   const onLoginSuccess = (data: TokenResponse) => {
-    console.log(data);
     localStorage.setItem("token", data.token);
     history.push("/servers");
   };

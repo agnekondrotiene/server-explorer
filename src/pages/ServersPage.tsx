@@ -1,4 +1,3 @@
-import React from "react";
 import { useHistory } from "react-router";
 import ServerListTable from "../components/ServerListTable";
 import { useServersQuery } from "../hooks/useServersQuery";
@@ -6,7 +5,6 @@ import { useServersQuery } from "../hooks/useServersQuery";
 const ServersPage = () => {
   const history = useHistory();
   const { servers } = useServersQuery();
-  console.log(servers);
 
   const onClick = () => {
     localStorage.removeItem("token");
@@ -23,7 +21,7 @@ const ServersPage = () => {
           Log out
         </button>
         <h1 className="text-center text-3xl p-4">Servers list</h1>
-        {servers ? (
+        {servers && Boolean(servers.length) ? (
           <ServerListTable servers={servers} />
         ) : (
           <p>Sorry, no info available!</p>
