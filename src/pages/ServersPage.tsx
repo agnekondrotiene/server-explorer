@@ -1,13 +1,16 @@
 import { useHistory } from "react-router";
 import ServerListTable from "../components/ServerListTable";
+import useAuth from "../core/auth/useAuth";
 import { useServersQuery } from "../hooks/useServersQuery";
 
 const ServersPage = () => {
   const history = useHistory();
+  const { setToken } = useAuth();
   const { servers, isLoading } = useServersQuery();
 
   const onClick = () => {
     localStorage.removeItem("token");
+    setToken(null);
     history.push("/");
   };
 

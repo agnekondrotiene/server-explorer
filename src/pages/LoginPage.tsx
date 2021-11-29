@@ -5,9 +5,9 @@ import useAuth from "../core/auth/useAuth";
 const LoginPage = () => {
   const history = useHistory();
 
-  const auth = useAuth();
+  const { token } = useAuth();
 
-  if (auth) {
+  if (token) {
     history.push("/servers");
   }
 

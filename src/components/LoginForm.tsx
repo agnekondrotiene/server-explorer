@@ -3,12 +3,15 @@ import useTokenMutation from "../hooks/useTokenMutation";
 import { TokenResponse } from "../types";
 import { useHistory } from "react-router-dom";
 import LoginError from "./LoginError";
+import useAuth from "../core/auth/useAuth";
 
 const LoginForm = () => {
   const history = useHistory();
+  const { setToken } = useAuth();
 
   const onLoginSuccess = (data: TokenResponse) => {
     localStorage.setItem("token", data.token);
+    setToken(data.token);
     history.push("/servers");
   };
 
