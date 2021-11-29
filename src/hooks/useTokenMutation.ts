@@ -9,7 +9,7 @@ type UseTokenMutation = UseMutationResult<
   unknown
 >;
 
-const useTokenQuery = (
+const useTokenMutation = (
   onSuccess: (data: TokenResponse) => void
 ): UseTokenMutation => {
   return useMutation(
@@ -23,4 +23,4 @@ const useTokenQuery = (
   );
 };
 
-export default useTokenQuery;
+export default useTokenMutation;

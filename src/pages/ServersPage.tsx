@@ -4,7 +4,7 @@ import { useServersQuery } from "../hooks/useServersQuery";
 
 const ServersPage = () => {
   const history = useHistory();
-  const { servers } = useServersQuery();
+  const { servers, isLoading } = useServersQuery();
 
   const onClick = () => {
     localStorage.removeItem("token");
@@ -22,7 +22,7 @@ const ServersPage = () => {
           Log out
         </button>
         <h1 className="text-center text-3xl p-4">Servers list</h1>
-        {servers && Boolean(servers.length) ? (
+        {!isLoading && servers && Boolean(servers.length) ? (
           <ServerListTable servers={servers} />
         ) : (
           <p>Sorry, no info available!</p>

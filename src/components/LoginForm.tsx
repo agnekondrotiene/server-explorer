@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import useTokenQuery from "../hooks/useTokenQuery";
+import useTokenMutation from "../hooks/useTokenMutation";
 import { TokenResponse } from "../types";
 import { useHistory } from "react-router-dom";
 import LoginError from "./LoginError";
@@ -12,7 +12,7 @@ const LoginForm = () => {
     history.push("/servers");
   };
 
-  const { mutate, error } = useTokenQuery(onLoginSuccess);
+  const { mutate, error } = useTokenMutation(onLoginSuccess);
 
   const formik = useFormik({
     initialValues: {
