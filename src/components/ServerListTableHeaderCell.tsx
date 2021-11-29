@@ -1,4 +1,5 @@
 import sortLogo from "../assets/sort.png";
+import styles from "./ServerListTableHeaderCell.module.css";
 
 type Props = {
   onClick: (newSortBy: string) => void;
@@ -16,7 +17,7 @@ const ServerListTableHeaderCell = ({
   return (
     <th
       onClick={() => onClick(cellName)}
-      className="border border-red-100 hover:bg-red-50 hover:outline-none"
+      className="border border-red-100 hover:bg-red-100 hover:outline-none"
     >
       <span className="inline-flex items-center">
         <span> {cellName}</span>
@@ -24,7 +25,7 @@ const ServerListTableHeaderCell = ({
           <img
             className={`${
               sortBy === cellName && sortByDirection === "desc"
-                ? "transform rotate-180"
+                ? styles.imgRotate
                 : ""
             } ${
               sortBy === cellName ? "opacity-100 animate-pulse" : "opacity-40"

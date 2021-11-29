@@ -17,7 +17,7 @@ apiClient.interceptors.request.use(function (config) {
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.config.url === "tokens") {
+    if (error.config.url === "/tokens") {
       return Promise.reject(error);
     }
 

@@ -52,7 +52,8 @@ const LoginForm = () => {
 
         <button
           type="submit"
-          className="mt-8 p-2 border-2 rounded-lg border-current hover:bg-red-50 hover:outline-none"
+          className="mt-8 p-2 border-2 rounded-lg border-current hover:bg-red-100 hover:outline-none"
+          style={{ outline: "none" }}
         >
           Submit
         </button>

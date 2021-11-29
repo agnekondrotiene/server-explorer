@@ -11,7 +11,8 @@ module.exports = {
   variants: {
     extend: {
       backgroundImage: ["hover", "focus"],
+      padding: ["hover"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss"), require("autoprefixer")],
 };

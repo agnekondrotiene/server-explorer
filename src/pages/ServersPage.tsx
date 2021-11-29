@@ -16,7 +16,8 @@ const ServersPage = () => {
       <div className="w-3/5 h-full flex flex-col items-center">
         <button
           onClick={onClick}
-          className="self-end w-1/5 mt-8 p-2 border-2 rounded-lg border-current hover:bg-red-50 hover:outline-none"
+          className="self-end w-1/5 mt-8 p-2 border-2 rounded-lg border-current hover:bg-red-100 hover:outline-none"
+          style={{ outline: "none" }}
         >
           Log out
         </button>
