@@ -1,9 +1,15 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 import AuthContext from "./authContext";
 
 const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
-  const token = localStorage.getItem("token");
-  return <AuthContext.Provider value={token}>{children}</AuthContext.Provider>;
+  const storedToken = localStorage.getItem("token");
+  const [token, setToken] = useState(storedToken);
+
+  return (
+    <AuthContext.Provider value={{ token, setToken }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
